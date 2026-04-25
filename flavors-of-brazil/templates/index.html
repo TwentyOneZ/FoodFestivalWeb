@@ -4,6 +4,9 @@
 <section class="hero" id="festival">
   <div class="hero-media" role="img" aria-label="Mesa editorial com pratos brasileiros"></div>
   <div class="hero-content">
+    <div class="hero-logo">
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Flavors of Brazil Food Festival logo">
+    </div>
     <p class="eyebrow">{{ site_settings.festival_edition }}</p>
     <h1>{{ site_settings.hero_title }}</h1>
     <p class="hero-subtitle">{{ site_settings.hero_subtitle }}</p>
@@ -18,163 +21,170 @@
     <span>Viver Magazine</span>
     <span>Georgia 2026</span>
   </div>
+  <div class="scroll-hint">{{ t('hero_scroll') }}</div>
 </section>
 
-<section class="section split">
+<div class="stats-strip">
+  <div class="stat"><span class="stat-num">20</span><span class="stat-label">{{ t('stat_days') }}</span></div>
+  <div class="stat"><span class="stat-num">+15</span><span class="stat-label">{{ t('stat_restaurants') }}</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">{{ t('stat_brazilian') }}</span></div>
+</div>
+
+<section class="section split reveal">
   <div>
-    <p class="eyebrow">Sobre o festival</p>
-    <h2>Um circuito brasileiro na Georgia</h2>
+    <p class="eyebrow">{{ t('about_label') }}</p>
+    <h2>{{ t('about_title') }}</h2>
   </div>
   <p class="lead">{{ site_settings.about_text }}</p>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-heading">
-    <p class="eyebrow">Objetivos</p>
-    <h2>Visibilidade, cultura e comunidade</h2>
+    <p class="eyebrow">{{ t('objectives_label') }}</p>
+    <h2>{{ t('objectives_title') }}</h2>
   </div>
   <div class="feature-grid four">
-    <article><h3>Promover</h3><p>A gastronomia brasileira na Georgia.</p></article>
-    <article><h3>Ampliar</h3><p>A exposicao dos restaurantes participantes.</p></article>
-    <article><h3>Gerar midia</h3><p>Conteudo digital, redes sociais e divulgacao editorial.</p></article>
-    <article><h3>Posicionar</h3><p>Restaurantes como referencia dentro da comunidade.</p></article>
+    <article><h3>{{ t('objective_promote_title') }}</h3><p>{{ t('objective_promote_text') }}</p></article>
+    <article><h3>{{ t('objective_expand_title') }}</h3><p>{{ t('objective_expand_text') }}</p></article>
+    <article><h3>{{ t('objective_media_title') }}</h3><p>{{ t('objective_media_text') }}</p></article>
+    <article><h3>{{ t('objective_position_title') }}</h3><p>{{ t('objective_position_text') }}</p></article>
   </div>
 </section>
 
-<section class="section textured">
+<section class="section textured reveal">
   <div class="section-heading">
-    <p class="eyebrow">Por que participar</p>
-    <h2>Uma vitrine comercial para restaurantes brasileiros</h2>
+    <p class="eyebrow">{{ t('why_label') }}</p>
+    <h2>{{ t('why_title') }}</h2>
   </div>
   <div class="pill-list">
-    <span>Mais visibilidade para seu negocio</span>
-    <span>Atracao de novos clientes</span>
-    <span>Divulgacao em midia e redes sociais</span>
-    <span>Fortalecimento da marca do restaurante</span>
-    <span>Certificado oficial de participacao</span>
-    <span>Presenca no website oficial do festival</span>
+    <span>{{ t('why_1') }}</span>
+    <span>{{ t('why_2') }}</span>
+    <span>{{ t('why_3') }}</span>
+    <span>{{ t('why_4') }}</span>
+    <span>{{ t('why_5') }}</span>
+    <span>{{ t('why_6') }}</span>
   </div>
 </section>
 
-<section class="section split reverse">
+<section class="section split reverse reveal">
   <div class="image-panel">
     <img src="{{ url_for('static', filename='assets/generated/gastronomy-bg.webp') }}" alt="Composicao gastronomica brasileira em tons quentes" loading="lazy">
   </div>
   <div>
-    <p class="eyebrow">Quem pode participar</p>
-    <h2>Negocios legalizados na Georgia</h2>
+    <p class="eyebrow">{{ t('who_label') }}</p>
+    <h2>{{ t('who_title') }}</h2>
     <div class="check-grid">
-      <span>Restaurantes brasileiros</span>
-      <span>Bares</span>
-      <span>Cafes</span>
-      <span>Padarias</span>
-      <span>Docerias</span>
-      <span>Food trucks</span>
+      <span>{{ t('who_1') }}</span>
+      <span>{{ t('who_2') }}</span>
+      <span>{{ t('who_3') }}</span>
+      <span>{{ t('who_4') }}</span>
+      <span>{{ t('who_5') }}</span>
+      <span>{{ t('who_6') }}</span>
     </div>
   </div>
 </section>
 
-<section class="section" id="como-funciona">
+<section class="section reveal" id="como-funciona">
   <div class="section-heading">
-    <p class="eyebrow">Como funciona</p>
-    <h2>Etapas simples para entrar no circuito</h2>
-    <p>Duração prevista: aproximadamente 20 dias / 3 a 4 semanas.</p>
+    <p class="eyebrow">{{ t('how_label') }}</p>
+    <h2>{{ t('how_title') }}</h2>
+    <p>{{ t('how_duration') }}</p>
   </div>
   <div class="steps">
-    <article><span>01</span><h3>Criar</h3><p>O restaurante cria um prato ou menu especial.</p></article>
-    <article><span>02</span><h3>Definir</h3><p>Define um preco fixo para a experiencia.</p></article>
-    <article><span>03</span><h3>Oferecer</h3><p>Disponibiliza o prato durante todo o periodo do festival.</p></article>
-    <article><span>04</span><h3>Divulgar</h3><p>Usa os materiais oficiais como participante.</p></article>
-    <article><span>05</span><h3>Receber</h3><p>Recebe clientes e ganha visibilidade.</p></article>
+    <article><span>01</span><h3>{{ t('step_create_title') }}</h3><p>{{ t('step_create_text') }}</p></article>
+    <article><span>02</span><h3>{{ t('step_define_title') }}</h3><p>{{ t('step_define_text') }}</p></article>
+    <article><span>03</span><h3>{{ t('step_offer_title') }}</h3><p>{{ t('step_offer_text') }}</p></article>
+    <article><span>04</span><h3>{{ t('step_promote_title') }}</h3><p>{{ t('step_promote_text') }}</p></article>
+    <article><span>05</span><h3>{{ t('step_receive_title') }}</h3><p>{{ t('step_receive_text') }}</p></article>
   </div>
 </section>
 
-<section class="section split">
+<section class="section split reveal">
   <div>
-    <p class="eyebrow">Servicos incluidos</p>
-    <h2>Conteudo, website e certificado</h2>
+    <p class="eyebrow">{{ t('services_label') }}</p>
+    <h2>{{ t('services_title') }}</h2>
   </div>
   <div class="service-list">
-    <p>Producao de 1 video no restaurante mostrando o prato do festival.</p>
-    <p>Publicacao de conteudo nas redes sociais da Business News TV e Viver Magazine.</p>
-    <p>Insercao do restaurante na pagina oficial do festival.</p>
-    <p>Certificado oficial de participacao.</p>
-    <p>Conteudos digitais como posts, stories e reels.</p>
+    <p>{{ t('service_1') }}</p>
+    <p>{{ t('service_2') }}</p>
+    <p>{{ t('service_3') }}</p>
+    <p>{{ t('service_4') }}</p>
+    <p>{{ t('service_5') }}</p>
   </div>
 </section>
 
-<section class="section media-band">
+<section class="section media-band reveal">
   <div>
-    <p class="eyebrow">Producao de conteudo</p>
-    <h2>Captacao agendada no restaurante</h2>
-    <p>A organizacao realizara a captacao de video no restaurante em data previamente agendada. O conteudo produzido podera ser utilizado em redes sociais, materiais promocionais e divulgacao institucional do festival.</p>
+    <p class="eyebrow">{{ t('media_label') }}</p>
+    <h2>{{ t('media_title') }}</h2>
+    <p>{{ t('media_text') }}</p>
   </div>
   <img src="{{ url_for('static', filename='assets/generated/media.webp') }}" alt="Cena editorial de producao de conteudo gastronomico" loading="lazy">
 </section>
 
-<section class="section certificate">
+<section class="section certificate reveal">
   <img src="{{ url_for('static', filename='assets/generated/certificate.webp') }}" alt="Placeholder premium de certificado oficial" loading="lazy">
   <div>
-    <p class="eyebrow">Certificado</p>
-    <h2>Certificado Oficial de Participacao</h2>
-    <p>Todos os participantes aprovados receberao Certificado Oficial de Participacao do Flavors of Brazil Food Festival - Georgia Edition. O certificado sera emitido por Business News TV e Viver Magazine.</p>
+    <p class="eyebrow">{{ t('certificate_label') }}</p>
+    <h2>{{ t('certificate_title') }}</h2>
+    <p>{{ t('certificate_text') }}</p>
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-heading">
-    <p class="eyebrow">Responsabilidades</p>
-    <h2>Compromissos do restaurante participante</h2>
+    <p class="eyebrow">{{ t('responsibilities_label') }}</p>
+    <h2>{{ t('responsibilities_title') }}</h2>
   </div>
   <div class="feature-grid">
-    <article><p>Manter o prato/menu disponivel durante todo o festival.</p></article>
-    <article><p>Garantir qualidade e consistencia do produto.</p></article>
-    <article><p>Informar corretamente preco e descricao.</p></article>
-    <article><p>Utilizar os materiais oficiais do festival.</p></article>
-    <article><p>Colaborar com a divulgacao.</p></article>
+    <article><p>{{ t('responsibility_1') }}</p></article>
+    <article><p>{{ t('responsibility_2') }}</p></article>
+    <article><p>{{ t('responsibility_3') }}</p></article>
+    <article><p>{{ t('responsibility_4') }}</p></article>
+    <article><p>{{ t('responsibility_5') }}</p></article>
   </div>
 </section>
 
-<section class="section fee">
+<section class="section fee reveal">
   <div>
-    <p class="eyebrow">Taxa de participacao</p>
-    <h2>US$650 por restaurante</h2>
+    <p class="eyebrow">{{ t('fee_label') }}</p>
+    <h2>{{ t('fee_title') }}</h2>
   </div>
-  <p>Taxa unica de participacao. O pagamento sera solicitado apos aprovacao da inscricao.</p>
+  <p>{{ t('fee_text') }}</p>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-heading">
-    <p class="eyebrow">Processo de inscricao</p>
-    <h2>Da aplicacao a divulgacao</h2>
+    <p class="eyebrow">{{ t('process_label') }}</p>
+    <h2>{{ t('process_title') }}</h2>
   </div>
   <ol class="process-list">
-    <li>Preencher formulario de inscricao no site.</li>
-    <li>Enviar informacoes do prato/menu.</li>
-    <li>Passar por curadoria.</li>
-    <li>Pagar a taxa de inscricao.</li>
-    <li>Receber confirmacao.</li>
-    <li>Comecar a divulgar.</li>
+    <li>{{ t('process_1') }}</li>
+    <li>{{ t('process_2') }}</li>
+    <li>{{ t('process_3') }}</li>
+    <li>{{ t('process_4') }}</li>
+    <li>{{ t('process_5') }}</li>
+    <li>{{ t('process_6') }}</li>
   </ol>
 </section>
 
-<section class="section schedule">
+<section class="section schedule reveal">
   <div class="section-heading">
-    <p class="eyebrow">Cronograma</p>
-    <h2>Datas a definir</h2>
+    <p class="eyebrow">{{ t('schedule_label') }}</p>
+    <h2>{{ t('schedule_title') }}</h2>
   </div>
   <div class="timeline">
-    <article><span>Abertura das inscricoes</span><strong>{{ site_settings.schedule_applications }}</strong></article>
-    <article><span>Periodo de producao de conteudo</span><strong>{{ site_settings.schedule_production }}</strong></article>
-    <article><span>Inicio do festival</span><strong>{{ site_settings.schedule_start }}</strong></article>
-    <article><span>Encerramento</span><strong>{{ site_settings.schedule_end }}</strong></article>
+    <article><span>{{ t('schedule_applications_label') }}</span><strong>{{ site_settings.schedule_applications }}</strong></article>
+    <article><span>{{ t('schedule_production_label') }}</span><strong>{{ site_settings.schedule_production }}</strong></article>
+    <article><span>{{ t('schedule_start_label') }}</span><strong>{{ site_settings.schedule_start }}</strong></article>
+    <article><span>{{ t('schedule_end_label') }}</span><strong>{{ site_settings.schedule_end }}</strong></article>
   </div>
 </section>
 
-<section class="section restaurants-preview">
+<section class="section restaurants-preview reveal">
   <div class="section-heading row">
     <div>
-      <p class="eyebrow">Circuito Gastronomico</p>
+      <p class="eyebrow">{{ t('restaurants_label') }}</p>
       <h2>{{ t('restaurants_title') }}</h2>
     </div>
     <a class="button secondary" href="{{ url_for('main.restaurants') }}">{{ t('nav_restaurants') }}</a>
@@ -199,10 +209,10 @@
   {% endif %}
 </section>
 
-<section class="section contact-band">
+<section class="section contact-band reveal">
   <div>
-    <p class="eyebrow">Contato</p>
-    <h2>Fale com a organizacao</h2>
+    <p class="eyebrow">{{ t('contact_label') }}</p>
+    <h2>{{ t('contact_title') }}</h2>
   </div>
   <div class="contact-cards">
     <article>

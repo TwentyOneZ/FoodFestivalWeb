@@ -30,6 +30,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.55;
+  overflow-x: hidden;
 }
 
 img {
@@ -139,11 +140,12 @@ textarea {
   position: relative;
   min-height: calc(100svh - 76px);
   display: grid;
-  align-items: end;
-  padding: clamp(80px, 11vw, 148px) clamp(20px, 6vw, 82px) 92px;
+  place-items: center;
+  padding: clamp(88px, 10vw, 132px) clamp(20px, 6vw, 82px) 112px;
   overflow: hidden;
   background: var(--green-950);
   color: var(--white);
+  text-align: center;
 }
 
 .hero-media {
@@ -156,9 +158,38 @@ textarea {
   transform: scale(1.01);
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 90%, rgba(189, 79, 36, 0.24) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 85% 10%, rgba(201, 154, 58, 0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
 .hero-content {
   position: relative;
+  z-index: 2;
   width: min(870px, 100%);
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-logo {
+  width: clamp(142px, 16vw, 210px);
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 8px 28px rgba(0, 0, 0, 0.38));
 }
 
 .eyebrow {
@@ -184,23 +215,25 @@ h2 {
 }
 
 .hero h1 {
+  margin-left: auto;
+  margin-right: auto;
   max-width: 960px;
   max-height: 325px;
   overflow: hidden;
   text-wrap: balance;
-  font-size: clamp(3rem, 7vw, 6.35rem);
+  font-size: clamp(2.55rem, 6.2vw, 6.35rem);
 }
 
 .hero-subtitle {
   max-width: 740px;
-  margin: 20px 0 0;
+  margin: 20px auto 0;
   font-size: clamp(1.25rem, 2.2vw, 2.1rem);
   font-weight: 800;
 }
 
 .hero-text {
   max-width: 720px;
-  margin: 18px 0 0;
+  margin: 18px auto 0;
   color: rgba(255, 255, 255, 0.88);
   font-size: 1.08rem;
 }
@@ -211,6 +244,7 @@ h2 {
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
+  justify-content: center;
   margin-top: 28px;
 }
 
@@ -249,10 +283,12 @@ h2 {
 
 .hero-strip {
   position: absolute;
+  z-index: 2;
   left: clamp(20px, 6vw, 82px);
   right: clamp(20px, 6vw, 82px);
   bottom: 24px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   color: rgba(255, 255, 255, 0.9);
@@ -267,8 +303,78 @@ h2 {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.scroll-hint {
+  position: absolute;
+  z-index: 2;
+  bottom: 76px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  animation: bounce 2.2s ease-in-out infinite;
+}
+
+.scroll-hint::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.34), transparent);
+}
+
+.stats-strip {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 7rem);
+  flex-wrap: wrap;
+  padding: 18px clamp(20px, 6vw, 82px);
+  background: var(--terracotta);
+  color: var(--white);
+}
+
+.stat {
+  min-width: 130px;
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
 .section {
   padding: clamp(64px, 8vw, 110px) clamp(20px, 6vw, 82px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .split {
@@ -1025,6 +1131,27 @@ th {
   border: 1px dashed var(--line);
   border-radius: 8px;
   color: var(--muted);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(7px);
+  }
 }
 
 @media (max-width: 1100px) {

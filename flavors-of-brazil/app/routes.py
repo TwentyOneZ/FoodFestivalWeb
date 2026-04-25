@@ -38,8 +38,11 @@ bp = Blueprint("main", __name__)
 
 
 def get_settings():
-    settings = {key: Setting.get(key, default) for key, default in DEFAULT_SETTINGS.items()}
-    return localize_settings(settings, getattr(g, "lang", DEFAULT_LANGUAGE))
+    return localize_settings(get_stored_settings(), getattr(g, "lang", DEFAULT_LANGUAGE))
+
+
+def get_stored_settings():
+    return {key: Setting.get(key, default) for key, default in DEFAULT_SETTINGS.items()}
 
 
 def tr(key):
@@ -373,7 +376,7 @@ def admin_dashboard():
         "admin_dashboard.html",
         seo=seo,
         counts=counts,
-        settings=get_settings(),
+        settings=get_stored_settings(),
         smtp_ready=smtp_configured(),
         statuses=APPLICATION_STATUSES,
     )

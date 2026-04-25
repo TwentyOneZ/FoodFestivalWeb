@@ -2,9 +2,9 @@
 
 {% block content %}
 <section class="page-hero compact">
-  <p class="eyebrow">Georgia Edition 2026</p>
+  <p class="eyebrow">{{ site_settings.festival_edition }}</p>
   <h1>{{ t('apply_title') }}</h1>
-  <p>Preencha os dados do responsavel, do restaurante e do prato/menu especial para passar pela curadoria.</p>
+  <p>{{ t('apply_intro') }}</p>
 </section>
 
 <section class="section form-section">
@@ -12,152 +12,152 @@
     <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 
     <fieldset>
-      <legend>Dados do responsavel</legend>
+      <legend>{{ t('responsible_data') }}</legend>
       <div class="form-grid">
-        <label>Nome completo
+        <label>{{ t('full_name') }}
           <input name="responsible_name" value="{{ form_data.get('responsible_name', '') }}" required>
-          {% if errors.responsible_name %}<span class="field-error">{{ errors.responsible_name }}</span>{% endif %}
+          {% if errors.responsible_name %}<span class="field-error">{{ t(errors.responsible_name) }}</span>{% endif %}
         </label>
-        <label>Cargo/funcao
+        <label>{{ t('role') }}
           <input name="responsible_role" value="{{ form_data.get('responsible_role', '') }}" required>
-          {% if errors.responsible_role %}<span class="field-error">{{ errors.responsible_role }}</span>{% endif %}
+          {% if errors.responsible_role %}<span class="field-error">{{ t(errors.responsible_role) }}</span>{% endif %}
         </label>
-        <label>Telefone
+        <label>{{ t('phone') }}
           <input name="responsible_phone" value="{{ form_data.get('responsible_phone', '') }}" required>
-          {% if errors.responsible_phone %}<span class="field-error">{{ errors.responsible_phone }}</span>{% endif %}
+          {% if errors.responsible_phone %}<span class="field-error">{{ t(errors.responsible_phone) }}</span>{% endif %}
         </label>
-        <label>E-mail
+        <label>{{ t('email') }}
           <input type="email" name="responsible_email" value="{{ form_data.get('responsible_email', '') }}" required>
-          {% if errors.responsible_email %}<span class="field-error">{{ errors.responsible_email }}</span>{% endif %}
+          {% if errors.responsible_email %}<span class="field-error">{{ t(errors.responsible_email) }}</span>{% endif %}
         </label>
       </div>
     </fieldset>
 
     <fieldset>
-      <legend>Dados do restaurante</legend>
+      <legend>{{ t('restaurant_data') }}</legend>
       <div class="form-grid">
-        <label>Nome do restaurante
+        <label>{{ t('restaurant_name') }}
           <input name="restaurant_name" value="{{ form_data.get('restaurant_name', '') }}" required>
-          {% if errors.restaurant_name %}<span class="field-error">{{ errors.restaurant_name }}</span>{% endif %}
+          {% if errors.restaurant_name %}<span class="field-error">{{ t(errors.restaurant_name) }}</span>{% endif %}
         </label>
-        <label>Tipo de negocio
+        <label>{{ t('business_type') }}
           <select name="business_type" required>
-            <option value="">Selecione</option>
+            <option value="">{{ t('select_option') }}</option>
             {% for option in business_types %}
-            <option value="{{ option }}" {{ 'selected' if form_data.get('business_type') == option else '' }}>{{ option }}</option>
+            <option value="{{ option }}" {{ 'selected' if form_data.get('business_type') == option else '' }}>{{ option_label(option) }}</option>
             {% endfor %}
           </select>
-          {% if errors.business_type %}<span class="field-error">{{ errors.business_type }}</span>{% endif %}
+          {% if errors.business_type %}<span class="field-error">{{ t(errors.business_type) }}</span>{% endif %}
         </label>
-        <label class="wide">Endereco completo
+        <label class="wide">{{ t('full_address') }}
           <input name="address" value="{{ form_data.get('address', '') }}" required>
-          {% if errors.address %}<span class="field-error">{{ errors.address }}</span>{% endif %}
+          {% if errors.address %}<span class="field-error">{{ t(errors.address) }}</span>{% endif %}
         </label>
-        <label>Cidade
+        <label>{{ t('city') }}
           <input name="city" value="{{ form_data.get('city', '') }}" required>
-          {% if errors.city %}<span class="field-error">{{ errors.city }}</span>{% endif %}
+          {% if errors.city %}<span class="field-error">{{ t(errors.city) }}</span>{% endif %}
         </label>
-        <label>Estado
+        <label>{{ t('state') }}
           <input name="state" value="{{ form_data.get('state', 'GA') }}" required>
-          {% if errors.state %}<span class="field-error">{{ errors.state }}</span>{% endif %}
+          {% if errors.state %}<span class="field-error">{{ t(errors.state) }}</span>{% endif %}
         </label>
-        <label>ZIP code
+        <label>{{ t('zip_code') }}
           <input name="zip_code" value="{{ form_data.get('zip_code', '') }}" required>
-          {% if errors.zip_code %}<span class="field-error">{{ errors.zip_code }}</span>{% endif %}
+          {% if errors.zip_code %}<span class="field-error">{{ t(errors.zip_code) }}</span>{% endif %}
         </label>
-        <label>Telefone comercial
+        <label>{{ t('business_phone') }}
           <input name="business_phone" value="{{ form_data.get('business_phone', '') }}" required>
-          {% if errors.business_phone %}<span class="field-error">{{ errors.business_phone }}</span>{% endif %}
+          {% if errors.business_phone %}<span class="field-error">{{ t(errors.business_phone) }}</span>{% endif %}
         </label>
-        <label>Website
+        <label>{{ t('website') }}
           <input type="url" name="website" value="{{ form_data.get('website', '') }}">
         </label>
-        <label>Instagram
+        <label>{{ t('instagram') }}
           <input name="instagram" value="{{ form_data.get('instagram', '') }}">
         </label>
-        <label>Facebook
+        <label>{{ t('facebook') }}
           <input name="facebook" value="{{ form_data.get('facebook', '') }}">
         </label>
-        <label class="wide">Horario de funcionamento
+        <label class="wide">{{ t('business_hours') }}
           <textarea name="business_hours" required>{{ form_data.get('business_hours', '') }}</textarea>
-          {% if errors.business_hours %}<span class="field-error">{{ errors.business_hours }}</span>{% endif %}
+          {% if errors.business_hours %}<span class="field-error">{{ t(errors.business_hours) }}</span>{% endif %}
         </label>
-        <label>O negocio esta legalizado e em funcionamento na Georgia?
+        <label>{{ t('legal_question') }}
           <select name="legal_business" required>
-            <option value="">Selecione</option>
-            <option value="Sim" {{ 'selected' if form_data.get('legal_business') == 'Sim' else '' }}>Sim</option>
-            <option value="Nao" {{ 'selected' if form_data.get('legal_business') == 'Nao' else '' }}>Nao</option>
+            <option value="">{{ t('select_option') }}</option>
+            <option value="Sim" {{ 'selected' if form_data.get('legal_business') == 'Sim' else '' }}>{{ t('yes') }}</option>
+            <option value="Nao" {{ 'selected' if form_data.get('legal_business') == 'Nao' else '' }}>{{ t('no') }}</option>
           </select>
-          {% if errors.legal_business %}<span class="field-error">{{ errors.legal_business }}</span>{% endif %}
+          {% if errors.legal_business %}<span class="field-error">{{ t(errors.legal_business) }}</span>{% endif %}
         </label>
       </div>
     </fieldset>
 
     <fieldset>
-      <legend>Informacoes do prato/menu</legend>
+      <legend>{{ t('dish_data') }}</legend>
       <div class="form-grid">
-        <label>Nome do prato ou menu especial
+        <label>{{ t('dish_name_label') }}
           <input name="dish_name" value="{{ form_data.get('dish_name', '') }}" required>
-          {% if errors.dish_name %}<span class="field-error">{{ errors.dish_name }}</span>{% endif %}
+          {% if errors.dish_name %}<span class="field-error">{{ t(errors.dish_name) }}</span>{% endif %}
         </label>
-        <label>Preco fixo
+        <label>{{ t('fixed_price') }}
           <input name="dish_price" value="{{ form_data.get('dish_price', '') }}" required>
-          {% if errors.dish_price %}<span class="field-error">{{ errors.dish_price }}</span>{% endif %}
+          {% if errors.dish_price %}<span class="field-error">{{ t(errors.dish_price) }}</span>{% endif %}
         </label>
-        <label>Categoria
+        <label>{{ t('category') }}
           <select name="dish_category" required>
-            <option value="">Selecione</option>
+            <option value="">{{ t('select_option') }}</option>
             {% for option in dish_categories %}
-            <option value="{{ option }}" {{ 'selected' if form_data.get('dish_category') == option else '' }}>{{ option }}</option>
+            <option value="{{ option }}" {{ 'selected' if form_data.get('dish_category') == option else '' }}>{{ option_label(option) }}</option>
             {% endfor %}
           </select>
-          {% if errors.dish_category %}<span class="field-error">{{ errors.dish_category }}</span>{% endif %}
+          {% if errors.dish_category %}<span class="field-error">{{ t(errors.dish_category) }}</span>{% endif %}
         </label>
-        <label>O prato estara disponivel durante todo o festival?
+        <label>{{ t('available_question') }}
           <select name="available_full_period" required>
-            <option value="">Selecione</option>
-            <option value="Sim" {{ 'selected' if form_data.get('available_full_period') == 'Sim' else '' }}>Sim</option>
-            <option value="Nao" {{ 'selected' if form_data.get('available_full_period') == 'Nao' else '' }}>Nao</option>
+            <option value="">{{ t('select_option') }}</option>
+            <option value="Sim" {{ 'selected' if form_data.get('available_full_period') == 'Sim' else '' }}>{{ t('yes') }}</option>
+            <option value="Nao" {{ 'selected' if form_data.get('available_full_period') == 'Nao' else '' }}>{{ t('no') }}</option>
           </select>
-          {% if errors.available_full_period %}<span class="field-error">{{ errors.available_full_period }}</span>{% endif %}
+          {% if errors.available_full_period %}<span class="field-error">{{ t(errors.available_full_period) }}</span>{% endif %}
         </label>
-        <label class="wide">Descricao do prato/menu
+        <label class="wide">{{ t('dish_description_label') }}
           <textarea name="dish_description" required>{{ form_data.get('dish_description', '') }}</textarea>
-          {% if errors.dish_description %}<span class="field-error">{{ errors.dish_description }}</span>{% endif %}
+          {% if errors.dish_description %}<span class="field-error">{{ t(errors.dish_description) }}</span>{% endif %}
         </label>
-        <label class="wide">Ingredientes principais
+        <label class="wide">{{ t('main_ingredients') }}
           <textarea name="main_ingredients" required>{{ form_data.get('main_ingredients', '') }}</textarea>
-          {% if errors.main_ingredients %}<span class="field-error">{{ errors.main_ingredients }}</span>{% endif %}
+          {% if errors.main_ingredients %}<span class="field-error">{{ t(errors.main_ingredients) }}</span>{% endif %}
         </label>
-        <label class="wide">Contem alergenos?
+        <label class="wide">{{ t('allergens_label') }}
           <textarea name="allergens">{{ form_data.get('allergens', '') }}</textarea>
         </label>
-        <label class="wide">Upload de foto do prato
+        <label class="wide">{{ t('dish_upload') }}
           <input type="file" name="dish_image" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
-          {% if errors.dish_image %}<span class="field-error">{{ errors.dish_image }}</span>{% endif %}
+          {% if errors.dish_image %}<span class="field-error">{{ t(errors.dish_image) }}</span>{% endif %}
         </label>
-        <label class="wide">Observacoes adicionais
+        <label class="wide">{{ t('additional_notes') }}
           <textarea name="notes">{{ form_data.get('notes', '') }}</textarea>
         </label>
       </div>
     </fieldset>
 
     <fieldset>
-      <legend>Aceites obrigatorios</legend>
+      <legend>{{ t('required_acceptances') }}</legend>
       <div class="accept-list">
-        <label><input type="checkbox" name="accept_truth" {{ 'checked' if form_data.get('accept_truth') else '' }}> Confirmo que as informacoes fornecidas sao verdadeiras.</label>
-        <label><input type="checkbox" name="accept_curation" {{ 'checked' if form_data.get('accept_curation') else '' }}> Confirmo que o restaurante podera passar por curadoria antes da aprovacao.</label>
-        <label><input type="checkbox" name="accept_fee" {{ 'checked' if form_data.get('accept_fee') else '' }}> Entendo que a taxa de participacao e de US$650 por restaurante.</label>
-        <label><input type="checkbox" name="accept_brand" {{ 'checked' if form_data.get('accept_brand') else '' }}> Entendo que o uso da marca do festival e restrito aos participantes aprovados.</label>
-        <label><input type="checkbox" name="accept_media" {{ 'checked' if form_data.get('accept_media') else '' }}> Autorizo o uso de imagens, videos e informacoes do restaurante/prato para divulgacao do festival.</label>
-        <label><input type="checkbox" name="accept_responsibilities" {{ 'checked' if form_data.get('accept_responsibilities') else '' }}> Concordo com as responsabilidades do restaurante participante.</label>
+        <label><input type="checkbox" name="accept_truth" {{ 'checked' if form_data.get('accept_truth') else '' }}> {{ t('accept_truth_text') }}</label>
+        <label><input type="checkbox" name="accept_curation" {{ 'checked' if form_data.get('accept_curation') else '' }}> {{ t('accept_curation_text') }}</label>
+        <label><input type="checkbox" name="accept_fee" {{ 'checked' if form_data.get('accept_fee') else '' }}> {{ t('accept_fee_text') }}</label>
+        <label><input type="checkbox" name="accept_brand" {{ 'checked' if form_data.get('accept_brand') else '' }}> {{ t('accept_brand_text') }}</label>
+        <label><input type="checkbox" name="accept_media" {{ 'checked' if form_data.get('accept_media') else '' }}> {{ t('accept_media_text') }}</label>
+        <label><input type="checkbox" name="accept_responsibilities" {{ 'checked' if form_data.get('accept_responsibilities') else '' }}> {{ t('accept_responsibilities_text') }}</label>
       </div>
       {% for field in ['accept_truth','accept_curation','accept_fee','accept_brand','accept_media','accept_responsibilities'] %}
-        {% if errors[field] %}<span class="field-error block">{{ errors[field] }}</span>{% endif %}
+        {% if errors[field] %}<span class="field-error block">{{ t(errors[field]) }}</span>{% endif %}
       {% endfor %}
     </fieldset>
 
-    <button class="button primary submit-button" type="submit">Enviar inscricao</button>
+    <button class="button primary submit-button" type="submit">{{ t('submit_application') }}</button>
   </form>
 </section>
 {% endblock %}

@@ -35,7 +35,7 @@
       <a href="{{ url_for('main.apply') }}" class="nav-cta">{{ t('nav_apply') }}</a>
       <div class="language-switcher" aria-label="Selecionar idioma">
         {% for code, label in languages.items() %}
-          <a class="{{ 'active' if active_lang == code else '' }}" href="{{ url_for('main.set_language', lang=code, next=request.full_path) }}">{{ label }}</a>
+          <a class="{{ 'active' if active_lang == code else '' }}" href="{{ url_for('main.set_language', lang=code, next=request.path) }}">{{ label }}</a>
         {% endfor %}
       </div>
     </nav>

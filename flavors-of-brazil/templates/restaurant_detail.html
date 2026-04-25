@@ -13,12 +13,12 @@
     <p>{{ restaurant.dish_description }}</p>
 
     <dl class="detail-list">
-      <div><dt>Endereco</dt><dd>{{ restaurant.address }}</dd></div>
-      <div><dt>Cidade</dt><dd>{{ restaurant.city }}, {{ restaurant.state }} {{ restaurant.zip_code }}</dd></div>
-      <div><dt>Telefone</dt><dd>{{ restaurant.phone }}</dd></div>
-      <div><dt>Website</dt><dd>{% if restaurant.website %}<a href="{{ restaurant.website }}" target="_blank" rel="noopener">{{ restaurant.website }}</a>{% else %}A definir{% endif %}</dd></div>
-      <div><dt>Instagram</dt><dd>{% if restaurant.instagram %}<a href="{{ restaurant.instagram }}" target="_blank" rel="noopener">{{ restaurant.instagram }}</a>{% else %}A definir{% endif %}</dd></div>
-      <div><dt>Horario</dt><dd>{{ restaurant.business_hours }}</dd></div>
+      <div><dt>{{ t('address') }}</dt><dd>{{ restaurant.address }}</dd></div>
+      <div><dt>{{ t('city') }}</dt><dd>{{ restaurant.city }}, {{ restaurant.state }} {{ restaurant.zip_code }}</dd></div>
+      <div><dt>{{ t('phone') }}</dt><dd>{{ restaurant.phone }}</dd></div>
+      <div><dt>{{ t('website') }}</dt><dd>{% if restaurant.website %}<a href="{{ restaurant.website }}" target="_blank" rel="noopener">{{ restaurant.website }}</a>{% else %}{{ t('undefined') }}{% endif %}</dd></div>
+      <div><dt>{{ t('instagram') }}</dt><dd>{% if restaurant.instagram %}<a href="{{ restaurant.instagram }}" target="_blank" rel="noopener">{{ restaurant.instagram }}</a>{% else %}{{ t('undefined') }}{% endif %}</dd></div>
+      <div><dt>{{ t('hours') }}</dt><dd>{{ restaurant.business_hours }}</dd></div>
     </dl>
 
     <div class="hero-actions">

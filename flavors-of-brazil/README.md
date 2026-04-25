@@ -91,10 +91,10 @@ docker compose up -d
 O compose sobe o app com Gunicorn em:
 
 ```text
-http://IP_DA_VPS:5000
+http://IP_DA_VPS:6000
 ```
 
-Se quiser expor direto na porta 80, defina `APP_PORT=80` no `.env`. Em producao, o ideal e usar Nginx ou Caddy na frente com HTTPS e proxy para `127.0.0.1:5000`.
+Se quiser expor direto na porta 80, defina `APP_PORT=80` no `.env`. Em producao, o ideal e usar Nginx ou Caddy na frente com HTTPS e proxy para `127.0.0.1:6000`.
 
 Dados persistentes:
 

@@ -9,7 +9,7 @@ No Security Group da instancia, libere:
 - SSH: porta `22`, preferencialmente apenas para seu IP.
 - HTTP: porta `80`.
 - HTTPS: porta `443`.
-- Temporario, se for acessar sem proxy: porta `5000`.
+- Temporario, se for acessar sem proxy: porta `6000`.
 
 Instale Docker e Compose Plugin no Ubuntu:
 
@@ -48,7 +48,7 @@ Exemplo para Docker:
 ```env
 SECRET_KEY=troque-por-uma-chave-longa-e-aleatoria
 SITE_URL=https://flavorsofbrazil.com
-APP_PORT=5000
+APP_PORT=6000
 DATABASE_URL=sqlite:////app/instance/flavors.db
 FLASK_DEBUG=0
 GUNICORN_WORKERS=3
@@ -105,10 +105,10 @@ Troque essa senha antes de divulgar o site.
 
 ## 6. Acesso sem proxy
 
-Com `APP_PORT=5000`:
+Com `APP_PORT=6000`:
 
 ```text
-http://IP_DA_EC2:5000
+http://IP_DA_EC2:6000
 ```
 
 Se quiser expor direto em HTTP:
@@ -125,7 +125,7 @@ docker compose up -d
 
 ## 7. Recomendado: Nginx com HTTPS
 
-Deixe o app em `APP_PORT=5000` e use Nginx na porta 80/443.
+Deixe o app em `APP_PORT=6000` e use Nginx na porta 80/443.
 
 Exemplo de bloco Nginx:
 
@@ -134,7 +134,7 @@ server {
     server_name flavorsofbrazil.com www.flavorsofbrazil.com;
 
     location / {
-        proxy_pass http://127.0.0.1:5000;
+        proxy_pass http://127.0.0.1:6000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
