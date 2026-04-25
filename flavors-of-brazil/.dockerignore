@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.git/
+.gitignore
+server.*.log
+instance/*.db
+instance/*.db-journal
+instance/*.db-wal
+instance/*.db-shm
+static/uploads/*
+!static/uploads/.gitkeep

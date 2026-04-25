@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero compact">
+  <p class="eyebrow">Circuito Gastronomico</p>
+  <h1>{{ t('restaurants_title') }}</h1>
+  <p>Casas aprovadas pela curadoria do Flavors of Brazil Food Festival - Georgia Edition 2026.</p>
+</section>
+
+<section class="section">
+  {% if restaurants %}
+  <div class="restaurant-grid">
+    {% for restaurant in restaurants %}
+    <article class="restaurant-card large">
+      <img src="{{ asset_url(restaurant.image) }}" alt="{{ restaurant.dish_name }} no {{ restaurant.name }}" loading="lazy">
+      <div>
+        <span class="badge">{{ t('official_badge') }}</span>
+        <h2>{{ restaurant.name }}</h2>
+        <p>{{ restaurant.city }}</p>
+        <p><strong>{{ restaurant.dish_name }}</strong></p>
+        <p>{{ restaurant.dish_price }}</p>
+        <a class="button secondary" href="{{ url_for('main.restaurant_detail', slug=restaurant.slug) }}">{{ t('view_restaurant') }}</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty">{{ t('restaurants_empty') }}</p>
+  {% endif %}
+</section>
+{% endblock %}

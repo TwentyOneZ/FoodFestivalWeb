@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero compact centered">
+  <p class="eyebrow">Flavors of Brazil</p>
+  <h1>{{ t('thank_you_title') }}</h1>
+  <p>{{ t('thank_you_text') }}</p>
+  <a class="button primary" href="{{ url_for('main.index') }}">Voltar ao site</a>
+</section>
+{% endblock %}

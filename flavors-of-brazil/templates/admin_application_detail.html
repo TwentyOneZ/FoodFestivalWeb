@@ -1,0 +1,88 @@
+{% extends "admin_base.html" %}
+
+{% block admin_content %}
+<section class="admin-header">
+  <div>
+    <p class="eyebrow">Inscricao #{{ application.id }}</p>
+    <h1>{{ application.restaurant_name }}</h1>
+  </div>
+  <a class="button secondary" href="{{ url_for('main.admin_application_detail', application_id=application.id, export='csv') }}">Exportar CSV</a>
+</section>
+
+<section class="admin-grid">
+  <article class="admin-panel">
+    <div class="panel-heading">
+      <h2>Dados enviados</h2>
+    </div>
+    <dl class="admin-dl">
+      <div><dt>Responsavel</dt><dd>{{ application.responsible_name }} - {{ application.responsible_role }}</dd></div>
+      <div><dt>Contato</dt><dd>{{ application.responsible_phone }} / {{ application.responsible_email }}</dd></div>
+      <div><dt>Tipo</dt><dd>{{ application.business_type }}</dd></div>
+      <div><dt>Endereco</dt><dd>{{ application.address }}, {{ application.city }}, {{ application.state }} {{ application.zip_code }}</dd></div>
+      <div><dt>Telefone comercial</dt><dd>{{ application.business_phone }}</dd></div>
+      <div><dt>Website</dt><dd>{{ application.website or 'A definir' }}</dd></div>
+      <div><dt>Instagram</dt><dd>{{ application.instagram or 'A definir' }}</dd></div>
+      <div><dt>Facebook</dt><dd>{{ application.facebook or 'A definir' }}</dd></div>
+      <div><dt>Horario</dt><dd>{{ application.business_hours }}</dd></div>
+      <div><dt>Legalizado</dt><dd>{{ application.legal_business }}</dd></div>
+      <div><dt>Prato/Menu</dt><dd>{{ application.dish_name }} - {{ application.dish_price }}</dd></div>
+      <div><dt>Categoria</dt><dd>{{ application.dish_category }}</dd></div>
+      <div><dt>Descricao</dt><dd>{{ application.dish_description }}</dd></div>
+      <div><dt>Ingredientes</dt><dd>{{ application.main_ingredients }}</dd></div>
+      <div><dt>Alergenos</dt><dd>{{ application.allergens or 'Nao informado' }}</dd></div>
+      <div><dt>Disponivel todo o periodo</dt><dd>{{ application.available_full_period }}</dd></div>
+      <div><dt>Observacoes</dt><dd>{{ application.notes or 'Nenhuma' }}</dd></div>
+    </dl>
+  </article>
+
+  <article class="admin-panel">
+    <div class="panel-heading">
+      <h2>Curadoria</h2>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="admin-form">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="action" value="save">
+      <label>Status
+        <select name="status">
+          {% for status in statuses %}
+          <option value="{{ status }}" {{ 'selected' if application.status == status else '' }}>{{ status }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Observacoes internas
+        <textarea name="internal_notes">{{ application.internal_notes or '' }}</textarea>
+      </label>
+      <label>Data de gravacao
+        <input type="date" name="filming_date" value="{{ application.filming_date or '' }}">
+      </label>
+      <label>Status do video
+        <select name="video_status">
+          {% for status in video_statuses %}
+          <option value="{{ status }}" {{ 'selected' if application.video_status == status else '' }}>{{ status }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Upload de foto/logo/foto do prato
+        <input type="file" name="admin_dish_image" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+      </label>
+      {% if application.dish_image %}
+      <img class="admin-thumb" src="{{ asset_url(application.dish_image) }}" alt="Imagem enviada">
+      {% endif %}
+      <button class="button primary" type="submit">Salvar alteracoes</button>
+    </form>
+
+    <div class="button-row">
+      <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="action" value="publish">
+        <button class="button primary" type="submit">Publicar restaurante</button>
+      </form>
+      <form method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="action" value="unpublish">
+        <button class="button secondary danger" type="submit">Remover da pagina publica</button>
+      </form>
+    </div>
+  </article>
+</section>
+{% endblock %}

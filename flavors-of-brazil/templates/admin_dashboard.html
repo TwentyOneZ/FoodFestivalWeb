@@ -1,0 +1,93 @@
+{% extends "admin_base.html" %}
+
+{% block admin_content %}
+<section class="admin-header">
+  <div>
+    <p class="eyebrow">Painel</p>
+    <h1>Dashboard</h1>
+  </div>
+  <span class="status-chip {{ 'ok' if smtp_ready else 'warn' }}">SMTP {{ 'configurado' if smtp_ready else 'nao configurado' }}</span>
+</section>
+
+<section class="metric-grid">
+  {% for label, value in counts.items() %}
+  <article class="metric-card">
+    <span>{{ label }}</span>
+    <strong>{{ value }}</strong>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="admin-panel">
+  <div class="panel-heading">
+    <h2>Conteudo basico</h2>
+    <p>Cronograma, textos principais, contatos e redes sociais.</p>
+  </div>
+  <form method="post" class="admin-form">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+    <div class="form-grid">
+      <label class="wide">Titulo do hero
+        <input name="hero_title" value="{{ settings.hero_title }}">
+      </label>
+      <label class="wide">Subtitulo
+        <input name="hero_subtitle" value="{{ settings.hero_subtitle }}">
+      </label>
+      <label class="wide">Texto principal
+        <textarea name="hero_text">{{ settings.hero_text }}</textarea>
+      </label>
+      <label class="wide">Sobre o festival
+        <textarea name="about_text">{{ settings.about_text }}</textarea>
+      </label>
+      <label>Abertura das inscricoes
+        <input name="schedule_applications" value="{{ settings.schedule_applications }}">
+      </label>
+      <label>Producao de conteudo
+        <input name="schedule_production" value="{{ settings.schedule_production }}">
+      </label>
+      <label>Inicio do festival
+        <input name="schedule_start" value="{{ settings.schedule_start }}">
+      </label>
+      <label>Encerramento
+        <input name="schedule_end" value="{{ settings.schedule_end }}">
+      </label>
+      <label>Contato Rodrigo
+        <input name="contact_rodrigo_name" value="{{ settings.contact_rodrigo_name }}">
+      </label>
+      <label>Telefone Rodrigo
+        <input name="contact_rodrigo_phone" value="{{ settings.contact_rodrigo_phone }}">
+      </label>
+      <label>E-mail Rodrigo
+        <input name="contact_rodrigo_email" value="{{ settings.contact_rodrigo_email }}">
+      </label>
+      <label>Contato Dilla
+        <input name="contact_dilla_name" value="{{ settings.contact_dilla_name }}">
+      </label>
+      <label>Telefone Dilla
+        <input name="contact_dilla_phone" value="{{ settings.contact_dilla_phone }}">
+      </label>
+      <label>E-mail Dilla
+        <input name="contact_dilla_email" value="{{ settings.contact_dilla_email }}">
+      </label>
+      <label>Instagram Business
+        <input name="instagram_business" value="{{ settings.instagram_business }}">
+      </label>
+      <label>Instagram Rodrigo
+        <input name="instagram_rodrigo" value="{{ settings.instagram_rodrigo }}">
+      </label>
+      <label>Instagram Viver
+        <input name="instagram_viver" value="{{ settings.instagram_viver }}">
+      </label>
+      <label>Instagram Dilla
+        <input name="instagram_dilla" value="{{ settings.instagram_dilla }}">
+      </label>
+      <label class="wide">Title homepage
+        <input name="homepage_title" value="{{ settings.homepage_title }}">
+      </label>
+      <label class="wide">Meta description homepage
+        <textarea name="homepage_description">{{ settings.homepage_description }}</textarea>
+      </label>
+    </div>
+    <button class="button primary" type="submit">Salvar conteudo</button>
+  </form>
+</section>
+{% endblock %}

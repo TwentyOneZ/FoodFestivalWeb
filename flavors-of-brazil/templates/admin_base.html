@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ seo.title if seo else "Admin | Flavors of Brazil" }}</title>
+  <meta name="description" content="{{ seo.description if seo else 'Painel administrativo' }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-body">
+  <aside class="admin-sidebar">
+    <a class="admin-brand" href="{{ url_for('main.admin_dashboard') }}">
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Flavors of Brazil">
+    </a>
+    <nav>
+      <a href="{{ url_for('main.admin_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('main.admin_applications') }}">Inscricoes</a>
+      <a href="{{ url_for('main.admin_restaurants') }}">Restaurantes</a>
+      <a href="{{ url_for('main.index') }}" target="_blank" rel="noopener">Site publico</a>
+      <a href="{{ url_for('main.admin_logout') }}">Sair</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="flash-wrap in-admin">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+    {% block admin_content %}{% endblock %}
+  </main>
+</body>
+</html>

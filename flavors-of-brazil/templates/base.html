@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="{{ active_lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ seo.title if seo else site_settings.homepage_title }}</title>
+  <meta name="description" content="{{ seo.description if seo else site_settings.homepage_description }}">
+  <meta property="og:title" content="{{ seo.title if seo else site_settings.homepage_title }}">
+  <meta property="og:description" content="{{ seo.description if seo else site_settings.homepage_description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta property="og:image" content="{{ seo.image if seo and seo.image else url_for('static', filename='assets/generated/hero-brazil.webp', _external=True) }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo.title if seo else site_settings.homepage_title }}">
+  <meta name="twitter:description" content="{{ seo.description if seo else site_settings.homepage_description }}">
+  <meta name="twitter:image" content="{{ seo.image if seo and seo.image else url_for('static', filename='assets/generated/hero-brazil.webp', _external=True) }}">
+  <link rel="canonical" href="{{ request.base_url }}">
+  <link rel="icon" href="{{ url_for('static', filename='assets/logo.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% if schema %}
+  <script type="application/ld+json">{{ schema|safe }}</script>
+  {% endif %}
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="{{ url_for('main.index') }}" aria-label="Flavors of Brazil">
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Flavors of Brazil Food Festival logo">
+    </a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-label="{{ t('menu_open') }}">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" data-menu>
+      <a href="{{ url_for('main.index') }}#festival">{{ t('nav_festival') }}</a>
+      <a href="{{ url_for('main.restaurants') }}">{{ t('nav_restaurants') }}</a>
+      <a href="{{ url_for('main.apply') }}" class="nav-cta">{{ t('nav_apply') }}</a>
+      <div class="language-switcher" aria-label="Selecionar idioma">
+        {% for code, label in languages.items() %}
+          <a class="{{ 'active' if active_lang == code else '' }}" href="{{ url_for('main.set_language', lang=code, next=request.full_path) }}">{{ label }}</a>
+        {% endfor %}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="flash-wrap">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="{{ url_for('static', filename='assets/logo.png') }}" alt="Flavors of Brazil Food Festival">
+        <p>{{ site_settings.festival_name }} - {{ site_settings.festival_edition }}</p>
+      </div>
+      <div>
+        <h2>{{ t('footer_contact') }}</h2>
+        <p>{{ site_settings.contact_rodrigo_name }}<br>{{ site_settings.contact_rodrigo_phone }}<br><a href="mailto:{{ site_settings.contact_rodrigo_email }}">{{ site_settings.contact_rodrigo_email }}</a></p>
+        <p>{{ site_settings.contact_dilla_name }}<br>{{ site_settings.contact_dilla_phone }}<br><a href="mailto:{{ site_settings.contact_dilla_email }}">{{ site_settings.contact_dilla_email }}</a></p>
+      </div>
+      <div>
+        <h2>{{ t('footer_social') }}</h2>
+        <p>{{ site_settings.instagram_business }}<br>{{ site_settings.instagram_rodrigo }}<br>{{ site_settings.instagram_viver }}<br>{{ site_settings.instagram_dilla }}</p>
+      </div>
+      <div>
+        <h2>{{ t('footer_legal') }}</h2>
+        <a href="{{ url_for('main.terms') }}">{{ t('terms') }}</a>
+        <a href="{{ url_for('main.privacy') }}">{{ t('privacy') }}</a>
+        <a href="{{ url_for('main.admin_login') }}">{{ t('nav_admin') }}</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Business News TV e Viver Magazine. {{ t('footer_rights') }}</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

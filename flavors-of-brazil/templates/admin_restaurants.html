@@ -1,0 +1,84 @@
+{% extends "admin_base.html" %}
+
+{% block admin_content %}
+<section class="admin-header">
+  <div>
+    <p class="eyebrow">Publicacao</p>
+    <h1>Restaurantes publicados</h1>
+  </div>
+</section>
+
+<section class="restaurant-admin-list">
+  {% for restaurant in restaurants %}
+  <article class="admin-panel restaurant-editor">
+    <div class="panel-heading row">
+      <div>
+        <h2>{{ restaurant.name }}</h2>
+        <p>{{ restaurant.city }} - {{ 'Publicado' if restaurant.is_published else 'Desativado' }}</p>
+      </div>
+      {% if restaurant.is_published %}
+      <a class="button secondary" href="{{ url_for('main.restaurant_detail', slug=restaurant.slug) }}" target="_blank" rel="noopener">Ver pagina</a>
+      {% endif %}
+    </div>
+    <form method="post" enctype="multipart/form-data" class="admin-form">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
+      <div class="form-grid">
+        <label>Nome
+          <input name="name" value="{{ restaurant.name }}">
+        </label>
+        <label>Preco
+          <input name="dish_price" value="{{ restaurant.dish_price }}">
+        </label>
+        <label class="wide">Descricao do restaurante
+          <textarea name="description">{{ restaurant.description }}</textarea>
+        </label>
+        <label>Prato/menu
+          <input name="dish_name" value="{{ restaurant.dish_name }}">
+        </label>
+        <label class="wide">Descricao do prato
+          <textarea name="dish_description">{{ restaurant.dish_description }}</textarea>
+        </label>
+        <label class="wide">Endereco
+          <input name="address" value="{{ restaurant.address }}">
+        </label>
+        <label>Cidade
+          <input name="city" value="{{ restaurant.city }}">
+        </label>
+        <label>Estado
+          <input name="state" value="{{ restaurant.state }}">
+        </label>
+        <label>ZIP
+          <input name="zip_code" value="{{ restaurant.zip_code }}">
+        </label>
+        <label>Telefone
+          <input name="phone" value="{{ restaurant.phone }}">
+        </label>
+        <label>Website
+          <input name="website" value="{{ restaurant.website or '' }}">
+        </label>
+        <label>Instagram
+          <input name="instagram" value="{{ restaurant.instagram or '' }}">
+        </label>
+        <label class="wide">Horario
+          <textarea name="business_hours">{{ restaurant.business_hours }}</textarea>
+        </label>
+        <label>Imagem
+          <input type="file" name="image" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+        </label>
+        <label class="toggle">
+          <input type="checkbox" name="is_published" {{ 'checked' if restaurant.is_published else '' }}>
+          Publicado
+        </label>
+      </div>
+      {% if restaurant.image %}
+      <img class="admin-thumb" src="{{ asset_url(restaurant.image) }}" alt="{{ restaurant.name }}">
+      {% endif %}
+      <button class="button primary" type="submit">Salvar restaurante</button>
+    </form>
+  </article>
+  {% else %}
+  <article class="admin-panel"><p>Nenhum restaurante publicado ainda.</p></article>
+  {% endfor %}
+</section>
+{% endblock %}

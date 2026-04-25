@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+.env
+server.*.log
+instance/*.db-journal
+instance/*.db-wal
+instance/*.db-shm
+static/uploads/*
+!static/uploads/.gitkeep

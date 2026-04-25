@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Flavors of Brazil – Food Festival Georgia Edition 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --green-dark:  #2d5016;
+  --green-mid:   #4a7c2f;
+  --green-light: #6a9e3f;
+  --rust:        #c94b1a;
+  --rust-light:  #e06535;
+  --gold:        #c8922a;
+  --gold-light:  #e8b84b;
+  --cream:       #f5f0e0;
+  --warm-white:  #faf8f2;
+  --charcoal:    #1c1c1a;
+  --text-body:   #3a3a38;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--warm-white);color:var(--text-body);overflow-x:hidden;}
+
+/* LANG BAR */
+.lang-bar{position:fixed;top:0;right:0;z-index:1000;display:flex;background:rgba(28,28,26,.88);backdrop-filter:blur(8px);border-radius:0 0 0 10px;overflow:hidden;}
+.lang-btn{background:none;border:none;color:rgba(245,240,224,.45);font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;cursor:pointer;transition:color .2s,background .2s;}
+.lang-btn:hover{color:var(--gold-light);}
+.lang-btn.active{color:var(--gold-light);background:rgba(200,146,42,.18);}
+.lang-sep{width:1px;background:rgba(255,255,255,.12);margin:.35rem 0;}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--green-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:6rem 2rem 4rem;}
+.hero::before{content:'';position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 15% 90%,rgba(201,75,26,.28) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 85% 10%,rgba(200,146,42,.16) 0%,transparent 60%);}
+.hero-inner{position:relative;z-index:1;text-align:center;animation:fadeUp .8s ease both;}
+.hero-logo{width:clamp(150px,25vw,210px);margin:0 auto 1.8rem;animation:fadeUp .7s .15s ease both;}
+.hero-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1rem;animation:fadeUp .7s .2s ease both;}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(1.55rem,4.2vw,2.8rem);font-weight:900;color:var(--cream);line-height:1.18;margin-bottom:.5rem;animation:fadeUp .7s .3s ease both;}
+.hero-headline em{color:var(--rust-light);font-style:italic;}
+.hero-sub{font-size:.9rem;font-weight:300;color:rgba(245,240,224,.58);margin:1.1rem 0 2rem;line-height:1.65;animation:fadeUp .7s .4s ease both;}
+.hero-cta{display:inline-block;background:var(--rust);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:.85rem 2.2rem;border-radius:100px;transition:background .2s,transform .2s;animation:fadeUp .7s .5s ease both;}
+.hero-cta:hover{background:var(--rust-light);transform:translateY(-2px);}
+.scroll-hint{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.35rem;color:rgba(245,240,224,.22);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;animation:bounce 2.2s ease-in-out infinite;}
+.scroll-hint::after{content:'';display:block;width:1px;height:34px;background:linear-gradient(to bottom,rgba(245,240,224,.22),transparent);}
+
+/* STATS */
+.stats-strip{background:var(--rust);color:#fff;padding:1.1rem 2rem;display:flex;justify-content:center;gap:clamp(2rem,6vw,7rem);flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;display:block;line-height:1;}
+.stat-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;}
+
+/* SECTION */
+section{padding:5rem 2rem;}
+.section-label{font-size:.67rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rust);font-weight:700;margin-bottom:.4rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.8vw,2.6rem);font-weight:900;line-height:1.12;color:var(--green-dark);margin-bottom:.9rem;}
+.section-intro{font-size:.92rem;color:#666;line-height:1.72;max-width:600px;}
+
+/* ABOUT */
+#sobre{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1000px;margin:0 auto;align-items:start;}
+@media(max-width:680px){.about-grid{grid-template-columns:1fr;}}
+.about-text p{font-size:.92rem;line-height:1.78;color:var(--text-body);margin-bottom:.9rem;}
+.objectives{margin-top:1.4rem;display:flex;flex-direction:column;gap:.75rem;}
+.obj-item{display:flex;align-items:flex-start;gap:.85rem;}
+.obj-hex{min-width:34px;height:34px;background:var(--green-dark);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:.82rem;font-weight:900;color:#fff;flex-shrink:0;margin-top:.1rem;}
+.obj-hex.gold{background:var(--gold);}
+.obj-hex.rust{background:var(--rust);}
+.obj-text{font-size:.86rem;line-height:1.5;font-weight:600;color:var(--green-dark);}
+.included-box{background:var(--green-dark);border-radius:16px;padding:2rem;color:var(--cream);}
+.included-box h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1.1rem;color:var(--gold-light);}
+.included-list{list-style:none;}
+.included-list li{display:flex;align-items:flex-start;gap:.65rem;font-size:.85rem;line-height:1.52;padding:.42rem 0;border-bottom:1px solid rgba(245,240,224,.1);}
+.included-list li:last-child{border-bottom:none;}
+.included-list li::before{content:'✓';color:var(--gold-light);font-weight:700;flex-shrink:0;margin-top:.05rem;}
+
+/* FORMAT */
+#formato{background:var(--warm-white);}
+.format-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.1rem;max-width:1000px;margin:2.2rem auto 0;}
+.fcard{background:#fff;border-radius:14px;padding:1.4rem 1.3rem;border-left:4px solid var(--green-mid);box-shadow:0 2px 10px rgba(26,26,24,.06);}
+.fcard-icon{font-size:1.5rem;margin-bottom:.5rem;}
+.fcard-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;color:var(--green-dark);margin-bottom:.35rem;}
+.fcard-text{font-size:.8rem;line-height:1.55;color:#666;}
+
+/* RESTAURANTS */
+#restaurantes{background:var(--cream);}
+.restaurants-header{max-width:1000px;margin:0 auto 2.2rem;}
+.filter-bar{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:1.3rem;}
+.filter-btn{background:none;border:1.5px solid #ccc;color:var(--text-body);font-family:'Nunito',sans-serif;font-size:.73rem;font-weight:700;letter-spacing:.05em;padding:.42rem 1rem;border-radius:100px;cursor:pointer;transition:all .2s;}
+.filter-btn:hover,.filter-btn.active{background:var(--green-dark);border-color:var(--green-dark);color:#fff;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.3rem;max-width:1200px;margin:0 auto;}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(26,26,24,.07);transition:transform .25s,box-shadow .25s;}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(26,26,24,.13);}
+.card-img{height:165px;position:relative;overflow:hidden;background:var(--green-dark);}
+.card-img-placeholder{width:100%;height:100%;display:grid;place-items:center;font-size:2.8rem;}
+.card-badge{position:absolute;top:.6rem;left:.6rem;background:var(--rust);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.26rem .7rem;border-radius:100px;}
+.card-body{padding:1rem 1.2rem 1.2rem;}
+.card-cuisine{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green-mid);margin-bottom:.22rem;}
+.card-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--green-dark);margin-bottom:.22rem;}
+.card-city{font-size:.72rem;color:#aaa;margin-bottom:.38rem;}
+.card-dish{font-size:.8rem;color:#555;line-height:1.52;margin-bottom:.85rem;}
+.card-footer{display:flex;justify-content:space-between;align-items:center;}
+.card-price{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--rust);}
+.card-price small{font-size:.65rem;font-weight:400;color:#bbb;font-family:'Nunito',sans-serif;}
+.card-link{font-size:.7rem;font-weight:700;color:var(--green-dark);text-decoration:none;letter-spacing:.05em;border-bottom:1.5px solid var(--green-dark);padding-bottom:1px;transition:color .2s,border-color .2s;}
+.card-link:hover{color:var(--rust);border-color:var(--rust);}
+.no-results{text-align:center;padding:3rem;color:#999;font-size:.92rem;grid-column:1/-1;}
+
+/* HOW */
+#como{background:var(--green-dark);}
+#como .section-label{color:var(--gold-light);}
+#como .section-title{color:var(--cream);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:2rem;max-width:900px;margin:2.8rem auto 0;}
+.step{text-align:center;}
+.step-num{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;color:var(--rust-light);line-height:1;margin-bottom:.38rem;}
+.step-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);margin-bottom:.38rem;}
+.step-text{font-size:.8rem;color:rgba(245,240,224,.48);line-height:1.58;}
+
+/* SIGNUP */
+#inscricao{background:linear-gradient(135deg,var(--rust) 0%,var(--rust-light) 100%);text-align:center;}
+#inscricao .section-label{color:rgba(255,255,255,.65);}
+#inscricao .section-title{color:#fff;}
+.insc-box{max-width:560px;margin:0 auto;}
+.insc-price{display:inline-block;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.28);border-radius:12px;padding:1.1rem 2.2rem;margin:1.8rem 0;}
+.insc-price-num{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:900;color:#fff;display:block;line-height:1;}
+.insc-price-label{font-size:.72rem;color:rgba(255,255,255,.68);letter-spacing:.1em;text-transform:uppercase;}
+.insc-intro{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.68;max-width:480px;margin:0 auto;}
+.insc-form{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem;}
+.insc-form input{flex:1;min-width:210px;padding:.82rem 1.15rem;border:1.5px solid rgba(255,255,255,.28);border-radius:100px;font-family:'Nunito',sans-serif;font-size:.88rem;background:rgba(255,255,255,.11);color:#fff;outline:none;transition:border-color .2s;}
+.insc-form input::placeholder{color:rgba(255,255,255,.5);}
+.insc-form input:focus{border-color:#fff;}
+.insc-form button{background:#fff;color:var(--rust);border:none;border-radius:100px;font-family:'Nunito',sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.82rem 1.8rem;cursor:pointer;transition:opacity .2s;}
+.insc-form button:hover{opacity:.88;}
+
+/* ORG */
+#organizacao{background:var(--warm-white);}
+.org-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;max-width:680px;margin:2rem auto 0;}
+@media(max-width:520px){.org-grid{grid-template-columns:1fr;}}
+.org-card{background:#fff;border-radius:14px;padding:1.6rem;box-shadow:0 2px 10px rgba(26,26,24,.07);text-align:center;}
+.org-card-name{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;color:var(--green-dark);margin-bottom:.28rem;}
+.org-card-role{font-size:.72rem;color:#aaa;letter-spacing:.08em;text-transform:uppercase;}
+.org-card-contact{margin-top:.9rem;font-size:.8rem;line-height:1.72;color:var(--text-body);}
+.org-card-contact a{color:var(--rust);text-decoration:none;}
+.org-card-contact a:hover{text-decoration:underline;}
+.org-partners{text-align:center;margin-top:2.8rem;}
+.org-partners p{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#bbb;margin-bottom:.9rem;}
+.partners-logos{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;align-items:center;}
+.partner-tag{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--green-dark);padding:.45rem 1.1rem;border:2px solid var(--green-dark);border-radius:8px;}
+.partner-tag.viver{color:var(--rust);border-color:var(--rust);}
+
+footer{background:var(--charcoal);color:rgba(245,240,224,.32);text-align:center;padding:1.8rem;font-size:.76rem;letter-spacing:.04em;}
+footer a{color:var(--gold-light);text-decoration:none;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- LANG -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" onclick="setLang('es')">ES</button>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <img src="Logo_Draft_3.png" style="width:100%;filter:drop-shadow(0 6px 24px rgba(0,0,0,.5))">
+      <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 8px 28px rgba(0,0,0,.5))">
+        <path d="M100 8 L178 46 L178 134 Q178 186 100 216 Q22 186 22 134 L22 46 Z" fill="#f5f0e0" stroke="#c94b1a" stroke-width="5"/>
+        <path d="M28 148 L172 148 L172 176 L28 176 Z" fill="#2d5016"/>
+        <path d="M38 172 Q100 204 162 172 L162 186 Q100 218 38 186 Z" fill="#c94b1a"/>
+        <!-- flame/fork motif -->
+        <ellipse cx="84" cy="62" rx="9" ry="18" fill="#2d5016" opacity=".9"/>
+        <ellipse cx="100" cy="55" rx="7" ry="22" fill="#f5f0e0"/>
+        <ellipse cx="116" cy="62" rx="9" ry="18" fill="#c8922a" opacity=".9"/>
+        <ellipse cx="100" cy="68" rx="6" ry="14" fill="#c94b1a" opacity=".85"/>
+        <text x="100" y="112" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="15" fill="#2d5016">Flavors of</text>
+        <text x="100" y="136" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="26" fill="#2d5016">BRAZIL</text>
+        <text x="100" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="9.5" fill="#f5f0e0" letter-spacing="2.5">FOOD FESTIVAL</text>
+        <text x="100" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#f5f0e0" letter-spacing="2">GEORGIA EDITION</text>
+      </svg>
+    </div>
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">📍 Atlanta Metro · Georgia · 2026</p>
+    <h1 class="hero-headline" data-i18n="hero_headline">Um circuito gastronômico<br><em>100% brasileiro</em> na Geórgia</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Restaurantes brasileiros reunidos em uma experiência única.<br>Menus especiais criados exclusivamente para o festival.</p>
+    <a href="#restaurantes" class="hero-cta" data-i18n="hero_cta">Ver Restaurantes</a>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</header>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><span class="stat-num">20</span><span class="stat-label" data-i18n="stat_days">Dias</span></div>
+  <div class="stat"><span class="stat-num">+15</span><span class="stat-label" data-i18n="stat_rest">Restaurantes</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label" data-i18n="stat_br">Gastronomia Brasileira</span></div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p class="section-label" data-i18n="sobre_label">Sobre o Festival</p>
+      <h2 class="section-title" data-i18n="sobre_title">O que é o<br>Flavors of Brazil?</h2>
+      <p data-i18n="sobre_p1">O <strong>Flavors of Brazil – Food Festival (Georgia Edition)</strong> é um circuito gastronômico que reúne restaurantes brasileiros na região metropolitana de Atlanta para promover a culinária nacional, gerar visibilidade e fortalecer a presença da comunidade gastronômica brasileira.</p>
+      <p data-i18n="sobre_p2">Esta primeira edição terá caráter <strong>promocional e colaborativo</strong>, sem competição ou votação. Um evento para celebrar e unir.</p>
+      <div class="objectives">
+        <div class="obj-item"><div class="obj-hex">01</div><div class="obj-text" data-i18n="obj1">Promover a gastronomia brasileira na Geórgia</div></div>
+        <div class="obj-item"><div class="obj-hex gold">02</div><div class="obj-text" data-i18n="obj2">Ampliar a exposição dos restaurantes para novos públicos</div></div>
+        <div class="obj-item"><div class="obj-hex rust">03</div><div class="obj-text" data-i18n="obj3">Gerar visibilidade por mídia e conteúdo digital</div></div>
+        <div class="obj-item"><div class="obj-hex" style="background:var(--green-light)">04</div><div class="obj-text" data-i18n="obj4">Posicionar os restaurantes como referência na comunidade</div></div>
+      </div>
+    </div>
+    <div class="included-box">
+      <h3 data-i18n="included_title">✦ O que está incluído</h3>
+      <ul class="included-list">
+        <li data-i18n="inc1">Produção de 1 vídeo no restaurante exibindo o prato do festival</li>
+        <li data-i18n="inc2">Publicação de conteúdo nas redes sociais da <strong>BusinessNewsTV</strong></li>
+        <li data-i18n="inc3">Publicação de conteúdo nas redes sociais da <strong>Viver Magazine</strong></li>
+        <li data-i18n="inc4">Inserção do restaurante na página oficial do festival</li>
+        <li data-i18n="inc5">Certificado Oficial de Participação emitido por Business News TV e Viver Magazine</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATO -->
+<section id="formato">
+  <div style="max-width:1000px;margin:0 auto;" class="reveal">
+    <p class="section-label" data-i18n="formato_label">Como participar</p>
+    <h2 class="section-title" data-i18n="formato_title">Formato do Festival</h2>
+    <p class="section-intro" data-i18n="formato_intro">Cada restaurante participante cria um prato ou menu especial, exclusivo para o período do festival, com preço fixo e identificação oficial do evento.</p>
+    <div class="format-cards">
+      <div class="fcard"><div class="fcard-icon">🍽️</div><div class="fcard-title" data-i18n="fc1_title">Prato Especial</div><p class="fcard-text" data-i18n="fc1_text">Crie um prato ou menu exclusivo que represente o melhor da sua cozinha para o festival.</p></div>
+      <div class="fcard"><div class="fcard-icon">🏷️</div><div class="fcard-title" data-i18n="fc2_title">Preço Fixo</div><p class="fcard-text" data-i18n="fc2_text">Defina um valor fixo para o prato do festival. Simples, transparente e atrativo para o cliente.</p></div>
+      <div class="fcard"><div class="fcard-icon">📅</div><div class="fcard-title" data-i18n="fc3_title">20 Dias</div><p class="fcard-text" data-i18n="fc3_text">O prato deve estar disponível durante todo o período do festival, garantindo consistência.</p></div>
+      <div class="fcard"><div class="fcard-icon">🎖️</div><div class="fcard-title" data-i18n="fc4_title">Identificação Oficial</div><p class="fcard-text" data-i18n="fc4_text">Sinalize o prato como parte oficial do Flavors of Brazil 2026 com os materiais fornecidos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANTES -->
+<section id="restaurantes">
+  <div class="restaurants-header reveal">
+    <p class="section-label" data-i18n="rest_label">Participantes</p>
+    <h2 class="section-title" data-i18n="rest_title">Restaurantes do Festival</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
+      <button class="filter-btn" data-filter="churrascaria">Churrascaria</button>
+      <button class="filter-btn" data-filter="casual">Casual</button>
+      <button class="filter-btn" data-filter="padaria">Padaria</button>
+      <button class="filter-btn" data-filter="nordestina">Nordestina</button>
+    </div>
+  </div>
+  <div class="cards-grid" id="cards-grid"></div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como">
+  <div style="max-width:900px;margin:0 auto;text-align:center;" class="reveal">
+    <p class="section-label" data-i18n="como_label">Passo a passo</p>
+    <h2 class="section-title" data-i18n="como_title">Como funciona</h2>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><div class="step-num">01</div><div class="step-title" data-i18n="step1_title">Escolha o restaurante</div><p class="step-text" data-i18n="step1_text">Explore os participantes e encontre o seu próximo lugar favorito.</p></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title" data-i18n="step2_title">Reserve sua mesa</div><p class="step-text" data-i18n="step2_text">Ligue diretamente para o restaurante ou acesse o link de reservas.</p></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title" data-i18n="step3_title">Peça o menu do festival</div><p class="step-text" data-i18n="step3_text">Ao chegar, solicite o prato especial do Flavors of Brazil 2026.</p></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title" data-i18n="step4_title">Compartilhe!</div><p class="step-text" data-i18n="step4_text">Marque <strong>#FlavorsOfBrazilGA</strong> e mostre sua experiência para o mundo.</p></div>
+  </div>
+</section>
+
+<!-- INSCRIÇÃO -->
+<section id="inscricao">
+  <div class="insc-box reveal">
+    <p class="section-label" data-i18n="insc_label">Restaurantes</p>
+    <h2 class="section-title" data-i18n="insc_title">Inscreva seu restaurante</h2>
+    <p class="insc-intro" data-i18n="insc_intro">A inscrição é realizada exclusivamente pelo site oficial. Vagas limitadas para garantir qualidade e exclusividade.</p>
+    <div class="insc-price">
+      <span class="insc-price-num">$650</span>
+      <span class="insc-price-label" data-i18n="insc_price_label">taxa única por restaurante</span>
+    </div>
+    <div class="insc-form">
+      <input type="text" data-placeholder-i18n="insc_name" placeholder="Nome do restaurante"/>
+      <input type="email" data-placeholder-i18n="insc_email" placeholder="Seu e-mail"/>
+      <button type="button" data-i18n="insc_btn">Quero participar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZAÇÃO -->
+<section id="organizacao">
+  <div style="max-width:800px;margin:0 auto;text-align:center;" class="reveal">
+    <p class="section-label" data-i18n="org_label">Quem realiza</p>
+    <h2 class="section-title" data-i18n="org_title">Organização</h2>
+  </div>
+  <div class="org-grid reveal">
+    <div class="org-card">
+      <div class="org-card-name">Rodrigo Souto Souza</div>
+      <div class="org-card-role" data-i18n="org_role1">Business News TV</div>
+      <div class="org-card-contact">📞 <a href="tel:7708736319">(770) 873-6319</a><br>✉️ <a href="mailto:rsouza@greatstoriesfilms.com">rsouza@greatstoriesfilms.com</a></div>
+    </div>
+    <div class="org-card">
+      <div class="org-card-name">Dilla Campos</div>
+      <div class="org-card-role" data-i18n="org_role2">Viver Magazine</div>
+      <div class="org-card-contact">📞 <a href="tel:7709534250">(770) 953-4250</a><br>✉️ <a href="mailto:vivermagazine@gmail.com">vivermagazine@gmail.com</a></div>
+    </div>
+  </div>
+  <div class="org-partners reveal">
+    <p data-i18n="org_partners_label">Realização</p>
+    <div class="partners-logos">
+      <div class="partner-tag">Business News TV</div>
+      <div class="partner-tag viver">Viver Magazine</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Flavors of Brazil – Food Festival Georgia Edition &nbsp;·&nbsp;
+    <a href="mailto:rsouza@greatstoriesfilms.com" data-i18n="footer_contact">Contato</a> &nbsp;·&nbsp;
+    <span data-i18n="footer_rights">Todos os direitos reservados</span>
+  </p>
+</footer>
+
+<script>
+/* ══════════════════════════════════════
+   DADOS DOS RESTAURANTES
+   → Edite aqui para adicionar novos!
+══════════════════════════════════════ */
+const restaurants = [
+  { name:"Churrascaria Gaúcho", cuisine:"Churrascaria", category:"churrascaria", city:"Alpharetta, GA", dish:"Picanha na brasa com arroz carreteiro e farofa de bacon", price:"$45", priceLabel:"prato do festival", emoji:"🥩", badge:"Destaque", url:"#" },
+  { name:"Sabor Carioca", cuisine:"Casual Brasileiro", category:"casual", city:"Duluth, GA", dish:"Feijoada completa com caipirinha de cortesia", price:"$38", priceLabel:"prato do festival", emoji:"🫘", badge:null, url:"#" },
+  { name:"Padaria Mineira", cuisine:"Padaria & Café", category:"padaria", city:"Norcross, GA", dish:"Café da manhã completo com pão de queijo e tapioca", price:"$22", priceLabel:"prato do festival", emoji:"🧀", badge:"Novidade", url:"#" },
+  { name:"Nordeste em Festa", cuisine:"Culinária Nordestina", category:"nordestina", city:"Lawrenceville, GA", dish:"Carne de sol com baião-de-dois e vinagrete de caju", price:"$34", priceLabel:"prato do festival", emoji:"🌵", badge:null, url:"#" },
+  { name:"Boteco Ipanema", cuisine:"Casual Brasileiro", category:"casual", city:"Atlanta, GA", dish:"Petiscos variados: coxinha, pastel e batata rústica", price:"$28", priceLabel:"prato do festival", emoji:"🍺", badge:"Favorito", url:"#" },
+  { name:"Gaúcho Premium", cuisine:"Churrascaria", category:"churrascaria", city:"Sandy Springs, GA", dish:"Costela no fogo de chão com acompanhamentos tradicionais", price:"$65", priceLabel:"prato do festival", emoji:"🔥", badge:"Chef's Pick", url:"#" }
+];
+
+function bgColor(c){return{churrascaria:'#2d1a0a',casual:'#1a2b23',padaria:'#2b2200',nordestina:'#2a1a00'}[c]||'#1a1a18';}
+
+function renderCards(filter='all'){
+  const grid=document.getElementById('cards-grid');
+  const list=filter==='all'?restaurants:restaurants.filter(r=>r.category===filter);
+  if(!list.length){grid.innerHTML='<p class="no-results">Nenhum restaurante nesta categoria ainda.</p>';return;}
+  grid.innerHTML=list.map(r=>`
+    <div class="card">
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:${bgColor(r.category)}">${r.emoji}</div>
+        ${r.badge?`<span class="card-badge">${r.badge}</span>`:''}
+      </div>
+      <div class="card-body">
+        <p class="card-cuisine">${r.cuisine}</p>
+        <h3 class="card-name">${r.name}</h3>
+        <p class="card-city">📍 ${r.city}</p>
+        <p class="card-dish">${r.dish}</p>
+        <div class="card-footer">
+          <div class="card-price">${r.price} <small>${r.priceLabel}</small></div>
+          <a href="${r.url}" class="card-link">Ver mais →</a>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.filter);
+  });
+});
+renderCards();
+
+// scroll reveal
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// smooth scroll
+document.querySelector('.hero-cta').addEventListener('click',e=>{e.preventDefault();document.querySelector('#restaurantes').scrollIntoView({behavior:'smooth'});});
+
+/* ══════════════════════════════════════
+   TRADUÇÕES — PT / EN / ES
+══════════════════════════════════════ */
+const i18n={
+pt:{
+  hero_eyebrow:"📍 Atlanta Metro · Georgia · 2026",
+  hero_headline:"Um circuito gastronômico<br><em>100% brasileiro</em> na Geórgia",
+  hero_sub:"Restaurantes brasileiros reunidos em uma experiência única.<br>Menus especiais criados exclusivamente para o festival.",
+  hero_cta:"Ver Restaurantes",
+  stat_days:"Dias",stat_rest:"Restaurantes",stat_fee:"Taxa única",stat_br:"Gastronomia Brasileira",
+  sobre_label:"Sobre o Festival",sobre_title:"O que é o<br>Flavors of Brazil?",
+  sobre_p1:"O <strong>Flavors of Brazil – Food Festival (Georgia Edition)</strong> é um circuito gastronômico que reúne restaurantes brasileiros na região metropolitana de Atlanta para promover a culinária nacional, gerar visibilidade e fortalecer a presença da comunidade gastronômica brasileira.",
+  sobre_p2:"Esta primeira edição terá caráter <strong>promocional e colaborativo</strong>, sem competição ou votação. Um evento para celebrar e unir.",
+  obj1:"Promover a gastronomia brasileira na Geórgia",obj2:"Ampliar a exposição dos restaurantes para novos públicos",obj3:"Gerar visibilidade por mídia e conteúdo digital",obj4:"Posicionar os restaurantes como referência na comunidade",
+  included_title:"✦ O que está incluído",
+  inc1:"Produção de 1 vídeo no restaurante exibindo o prato do festival",inc2:"Publicação de conteúdo nas redes sociais da <strong>BusinessNewsTV</strong>",inc3:"Publicação de conteúdo nas redes sociais da <strong>Viver Magazine</strong>",inc4:"Inserção do restaurante na página oficial do festival",inc5:"Certificado Oficial de Participação emitido por Business News TV e Viver Magazine",
+  formato_label:"Como participar",formato_title:"Formato do Festival",formato_intro:"Cada restaurante participante cria um prato ou menu especial, exclusivo para o período do festival, com preço fixo e identificação oficial do evento.",
+  fc1_title:"Prato Especial",fc1_text:"Crie um prato ou menu exclusivo que represente o melhor da sua cozinha para o festival.",fc2_title:"Preço Fixo",fc2_text:"Defina um valor fixo para o prato do festival. Simples, transparente e atrativo.",fc3_title:"20 Dias",fc3_text:"O prato deve estar disponível durante todo o período do festival, garantindo consistência.",fc4_title:"Identificação Oficial",fc4_text:"Sinalize o prato como parte oficial do Flavors of Brazil 2026 com os materiais fornecidos.",
+  rest_label:"Participantes",rest_title:"Restaurantes do Festival",filter_all:"Todos",
+  como_label:"Passo a passo",como_title:"Como funciona",
+  step1_title:"Escolha o restaurante",step1_text:"Explore os participantes e encontre o seu próximo lugar favorito.",step2_title:"Reserve sua mesa",step2_text:"Ligue diretamente para o restaurante ou acesse o link de reservas.",step3_title:"Peça o menu do festival",step3_text:"Ao chegar, solicite o prato especial do Flavors of Brazil 2026.",step4_title:"Compartilhe!",step4_text:"Marque <strong>#FlavorsOfBrazilGA</strong> e mostre sua experiência para o mundo.",
+  insc_label:"Restaurantes",insc_title:"Inscreva seu restaurante",insc_intro:"A inscrição é realizada exclusivamente pelo site oficial. Vagas limitadas para garantir qualidade e exclusividade.",insc_price_label:"taxa única por restaurante",insc_name:"Nome do restaurante",insc_email:"Seu e-mail",insc_btn:"Quero participar",
+  org_label:"Quem realiza",org_title:"Organização",org_role1:"Business News TV",org_role2:"Viver Magazine",org_partners_label:"Realização",
+  footer_contact:"Contato",footer_rights:"Todos os direitos reservados"
+},
+en:{
+  hero_eyebrow:"📍 Atlanta Metro · Georgia · 2026",
+  hero_headline:"A Brazilian culinary circuit<br><em>right here in Georgia</em>",
+  hero_sub:"Brazilian restaurants united in a one-of-a-kind experience.<br>Special menus created exclusively for the festival.",
+  hero_cta:"See Restaurants",
+  stat_days:"Days",stat_rest:"Restaurants",stat_fee:"One-time fee",stat_br:"Brazilian Cuisine",
+  sobre_label:"About",sobre_title:"What is<br>Flavors of Brazil?",
+  sobre_p1:"<strong>Flavors of Brazil – Food Festival (Georgia Edition)</strong> is a culinary circuit that brings together Brazilian restaurants in the Atlanta metro area to promote national cuisine, generate visibility, and strengthen the Brazilian food community.",
+  sobre_p2:"This inaugural edition is <strong>promotional and collaborative</strong> — no competition, no voting. An event to celebrate and unite.",
+  obj1:"Promote Brazilian gastronomy in Georgia",obj2:"Expand restaurant exposure to new audiences",obj3:"Generate visibility through media and digital content",obj4:"Position restaurants as community references",
+  included_title:"✦ What's included",
+  inc1:"Production of 1 video at the restaurant showcasing the festival dish",inc2:"Content publication on <strong>BusinessNewsTV</strong> social media",inc3:"Content publication on <strong>Viver Magazine</strong> social media",inc4:"Restaurant listing on the official festival website",inc5:"Official Participation Certificate issued by Business News TV and Viver Magazine",
+  formato_label:"How to participate",formato_title:"Festival Format",formato_intro:"Each participating restaurant creates a special dish or menu, exclusive to the festival period, with a fixed price and official event identification.",
+  fc1_title:"Special Dish",fc1_text:"Create an exclusive dish or menu that showcases the best of your kitchen.",fc2_title:"Fixed Price",fc2_text:"Set a fixed price for your festival dish. Simple, transparent, and attractive.",fc3_title:"20 Days",fc3_text:"The dish must be available throughout the entire festival period, ensuring consistency.",fc4_title:"Official Badge",fc4_text:"Mark the dish as officially part of Flavors of Brazil 2026 using provided materials.",
+  rest_label:"Participants",rest_title:"Festival Restaurants",filter_all:"All",
+  como_label:"Step by step",como_title:"How it works",
+  step1_title:"Choose a restaurant",step1_text:"Browse the participants and find your next favorite spot.",step2_title:"Reserve your table",step2_text:"Call the restaurant directly or use the reservation link.",step3_title:"Order the festival menu",step3_text:"When you arrive, ask for the special Flavors of Brazil 2026 dish.",step4_title:"Share it!",step4_text:"Tag <strong>#FlavorsOfBrazilGA</strong> and show the world your experience.",
+  insc_label:"Restaurants",insc_title:"Register your restaurant",insc_intro:"Registration is done exclusively through the official website. Limited spots to ensure quality and exclusivity.",insc_price_label:"one-time fee per restaurant",insc_name:"Restaurant name",insc_email:"Your email",insc_btn:"I want to join",
+  org_label:"Organized by",org_title:"Organization",org_role1:"Business News TV",org_role2:"Viver Magazine",org_partners_label:"Presented by",
+  footer_contact:"Contact",footer_rights:"All rights reserved"
+},
+es:{
+  hero_eyebrow:"📍 Atlanta Metro · Georgia · 2026",
+  hero_headline:"Un circuito gastronómico<br><em>100% brasileño</em> en Georgia",
+  hero_sub:"Restaurantes brasileños reunidos en una experiencia única.<br>Menús especiales creados exclusivamente para el festival.",
+  hero_cta:"Ver Restaurantes",
+  stat_days:"Días",stat_rest:"Restaurantes",stat_fee:"Tasa única",stat_br:"Gastronomía Brasileña",
+  sobre_label:"Sobre el Festival",sobre_title:"¿Qué es<br>Flavors of Brazil?",
+  sobre_p1:"<strong>Flavors of Brazil – Food Festival (Georgia Edition)</strong> es un circuito gastronómico que reúne restaurantes brasileños en el área metropolitana de Atlanta para promover la cocina nacional, generar visibilidad y fortalecer la comunidad gastronómica brasileña.",
+  sobre_p2:"Esta primera edición tiene carácter <strong>promocional y colaborativo</strong>, sin competencia ni votación. Un evento para celebrar y unir.",
+  obj1:"Promover la gastronomía brasileña en Georgia",obj2:"Ampliar la exposición de los restaurantes a nuevos públicos",obj3:"Generar visibilidad a través de medios y contenido digital",obj4:"Posicionar los restaurantes como referentes en la comunidad",
+  included_title:"✦ Qué está incluido",
+  inc1:"Producción de 1 video en el restaurante mostrando el plato del festival",inc2:"Publicación de contenido en las redes sociales de <strong>BusinessNewsTV</strong>",inc3:"Publicación de contenido en las redes sociales de <strong>Viver Magazine</strong>",inc4:"Inclusión del restaurante en la página oficial del festival",inc5:"Certificado Oficial de Participación emitido por Business News TV y Viver Magazine",
+  formato_label:"Cómo participar",formato_title:"Formato del Festival",formato_intro:"Cada restaurante participante crea un plato o menú especial, exclusivo para el período del festival, con precio fijo e identificación oficial.",
+  fc1_title:"Plato Especial",fc1_text:"Crea un plato o menú exclusivo que represente lo mejor de tu cocina.",fc2_title:"Precio Fijo",fc2_text:"Define un precio fijo para el plato del festival. Simple, transparente y atractivo.",fc3_title:"20 Días",fc3_text:"El plato debe estar disponible durante todo el período del festival.",fc4_title:"Identificación Oficial",fc4_text:"Señala el plato como parte oficial de Flavors of Brazil 2026 con los materiales provistos.",
+  rest_label:"Participantes",rest_title:"Restaurantes del Festival",filter_all:"Todos",
+  como_label:"Paso a paso",como_title:"Cómo funciona",
+  step1_title:"Elige el restaurante",step1_text:"Explora los participantes y encuentra tu próximo lugar favorito.",step2_title:"Reserva tu mesa",step2_text:"Llama directamente al restaurante o usa el enlace de reservas.",step3_title:"Pide el menú del festival",step3_text:"Al llegar, solicita el plato especial de Flavors of Brazil 2026.",step4_title:"¡Comparte!",step4_text:"Etiqueta <strong>#FlavorsOfBrazilGA</strong> y muestra tu experiencia al mundo.",
+  insc_label:"Restaurantes",insc_title:"Inscribe tu restaurante",insc_intro:"La inscripción se realiza exclusivamente a través del sitio oficial. Cupos limitados para garantizar calidad y exclusividad.",insc_price_label:"tasa única por restaurante",insc_name:"Nombre del restaurante",insc_email:"Tu correo electrónico",insc_btn:"Quiero participar",
+  org_label:"Quiénes organizan",org_title:"Organización",org_role1:"Business News TV",org_role2:"Viver Magazine",org_partners_label:"Presentado por",
+  footer_contact:"Contacto",footer_rights:"Todos los derechos reservados"
+}
+};
+
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  const t=i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.innerHTML=t[k];});
+  document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.dataset.placeholderI18n;if(t[k]!==undefined)el.placeholder=t[k];});
+  document.querySelector('.filter-btn[data-filter="all"]').textContent=t.filter_all;
+}
+</script>
+</body>
+</html>
